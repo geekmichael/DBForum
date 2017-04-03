@@ -3,6 +3,7 @@
 #
 
 import time
+import bleach
 import psycopg2
 
 ## Get posts from database.
@@ -35,7 +36,8 @@ def AddPost(content):
     t = time.strftime('%c', time.localtime())
     cursor = DB.cursor()
 #    cursor.execute("INSERT INTO posts (content) VALUES ('%s')" % content)
-    # To prevent the SQL injection bug
+    # To prevent the SQL injection bug and sanitize text from the web form
+    content = bleach.clean(content)
     cursor.execute("INSERT INTO posts (content) VALUES (%s)", (content,))
     DB.commit()
     DB.close()
