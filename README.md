@@ -5,11 +5,12 @@ A practice for learning Python and PostgreSQL when I was in the Udacity online c
 # How to run
 
 ## Create a new database in PostgreSQL
-```
-\c forum
+```sql
+CREATE DATABASE forum
 ```
 ## Create a table
 ```sql
+\c forum
 CREATE TABLE posts ( content TEXT,
                      time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                      id SERIAL );
